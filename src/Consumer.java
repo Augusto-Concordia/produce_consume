@@ -4,6 +4,8 @@ import java.util.Random;
 public class Consumer {
     private float probability;
 
+    private int totalConsumption = 0;
+
     private Random random;
 
     public Consumer(float probability) {
@@ -12,7 +14,13 @@ public class Consumer {
     }
 
     public void Consume(List<Integer> buffer) {
-        if (probability >= random.nextFloat())
-            buffer.remove(0);
+        if(!buffer.isEmpty()){
+            if (probability >= random.nextFloat()){
+                int item = buffer.remove(0);
+                System.out.println("The item CONSUMED is " + item + " and buffer size is " + buffer.size());
+                totalConsumption++;
+            }
+        }
     }
+    public int getTotalConsumption(){return totalConsumption;}
 }

@@ -26,7 +26,13 @@ public class Main {
             Producer producer = new Producer(q);
             Consumer consumer = new Consumer(p);
             int x =0;
-            for(int i =0; i <100; i++){
+            for(int i =0; i <10; i++){
+                if(buffer.size() == COUNT){
+                    System.out.println("Buffer is full");
+                }
+                if(buffer.isEmpty()){
+                    System.out.println("Buffer is empty");
+                }
                 // Producer action
                 empty.Wait();
                 mutex.Wait();
@@ -49,18 +55,6 @@ public class Main {
         else{
             System.out.println("Error, q has to be less than 1 and greater than 0");
         }
-
-
-
-
-        /*Output on the console the following:
-        Generation of an items
-        Consumption of an Item
-        isEmpty() or isFull
-        State of the processes whether they are in the state of busy waiting
-         */
     }
-
-
-
+    
 }

@@ -2,11 +2,11 @@ import java.util.List;
 import java.util.Random;
 
 public class Consumer {
-    private float probability;
+    private final Random random;
+    private final float probability;
 
     private int totalConsumption = 0;
 
-    private Random random;
 
     public Consumer(float probability) {
         this.probability = probability;
@@ -14,13 +14,15 @@ public class Consumer {
     }
 
     public void Consume(List<Integer> buffer) {
-        if(!buffer.isEmpty()){
-            if (probability >= random.nextFloat()){
-                int item = buffer.remove(0);
-                System.out.println("The item CONSUMED is " + item + " and buffer size is " + buffer.size());
-                totalConsumption++;
-            }
+        if (!buffer.isEmpty() && probability >= random.nextFloat()) {
+            int item = buffer.remove(0);
+            System.out.println("An item was CONSUMED and is " + item);
+            totalConsumption++;
+
+            return;
         }
+
+        System.out.println("Consumer WAITING");
     }
     public int getTotalConsumption(){return totalConsumption;}
 }
